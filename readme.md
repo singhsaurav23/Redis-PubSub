@@ -30,6 +30,7 @@ await subscriber.connect();
 > When working with either `RedisCluster` or `RedisSentinel`, this is handled automatically for you.
 
 ### `sharded-channel-moved` event
+It is not used mostly, because one shard will not be able to connect to another shard 
 
 `RedisClient` emits the `sharded-channel-moved` event when the ["cluster slot"](https://redis.io/docs/reference/cluster-spec/#key-distribution-model) of a subscribed [Sharded Pub/Sub](https://redis.io/docs/manual/pubsub/#sharded-pubsub) channel has been moved to another shard.
 
@@ -103,7 +104,10 @@ await subscriber.publish(Buffer.from('channel'), Buffer.from('message'));
 ```
 
 > NOTE: Buffers and strings are supported both for the channel name and the message. You can mix and match these as desired.
-
+It is mainly used for:
+> Binary Data Handling: Buffers are crucial for handling binary data in a raw format, like working with files, images, video, or network protocols.
+> Efficient Memory Usage: Buffers allow you to manipulate data at the byte level, which can be more memory-efficient for binary data compared to using strings.
+> Encoding/Decoding: Buffers support various encodings (like UTF-8, ASCII, Base64), making them flexible for transforming data to and from different formats.
 PING
 PSUBSCRIBE
 PUNSUBSCRIBE
